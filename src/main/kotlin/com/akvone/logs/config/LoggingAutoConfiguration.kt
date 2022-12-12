@@ -44,7 +44,7 @@ class CustomLoggingCondition : Condition {
             .let { it as LoggerContext }
             .loggerList
             .map { it.iteratorForAppenders().asSequence().any { appender -> appender.name == CUSTOM_APPENDER_NAME } }
-            .any()
+            .any { it }
     }
 
 }
