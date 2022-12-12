@@ -18,4 +18,15 @@ data class PersistentAppenderProperties(
 
 data class ExportingProperties(
     val url: String,
+    val basicAuth: BasicAuthProperties? = null,
+    val job: JobProperties
+)
+
+data class BasicAuthProperties(
+    val username: String,
+    val password: String
+)
+
+data class JobProperties(
+    val fixedDelay: Int
 )
