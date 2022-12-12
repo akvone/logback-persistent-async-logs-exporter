@@ -6,7 +6,7 @@ import java.util.*
 
 @Service
 open class LogsService(
-    private val httpLogsPusher: HttpLogsPusher
+    private val httpLogsExporter: HttpLogsExporter
 ) {
 
     private var lastReadFileName = "" // Any name which will never exist in log folder
@@ -19,11 +19,11 @@ open class LogsService(
         getSortedLogFiles().forEach {
             if (it.name == lastReadFileName) {
                 val list = getLogLinesSince(it, lastReadLineNumber)
-                httpLogsPusher.push(list)
+                httpLogsExporter.push(list)
                 lastReadLineNumber += list.size
             } else {
                 val list = getLogLinesSince(it, 0)
-                httpLogsPusher.push(list)
+                httpLogsExporter.push(list)
                 lastReadLineNumber = list.size
                 lastReadFileName = it.name
             }

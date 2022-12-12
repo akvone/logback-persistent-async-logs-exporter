@@ -6,7 +6,7 @@ import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBodilessEntity
 
 @Service
-open class HttpLogsPusher {
+open class HttpLogsExporter {
 
     private val webClient = WebClient.builder()
         .baseUrl("http://localhost:8081")
