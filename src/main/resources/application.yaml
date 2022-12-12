@@ -1,6 +1,6 @@
 logging:
   custom:
-    exporter:
+    exporting:
       url: "http://localhost:8081/logs"
     persistentAppender:
       fileNamePartsSeparator: "."

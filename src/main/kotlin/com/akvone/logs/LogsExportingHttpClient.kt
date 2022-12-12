@@ -10,7 +10,7 @@ open class LogsExportingHttpClient(
 
     fun push(logLines: List<String>) {
         webClient.post()
-            .uri(properties.exporter.url)
+            .uri(properties.exporting.url)
             .bodyValue(logLines)
             .retrieve()
             .toBodilessEntity()
