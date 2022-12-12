@@ -6,7 +6,7 @@ open class LogsExportingJob(
     private val logsService: LogsService
 ) {
 
-    @Scheduled(fixedDelay = 3000)
+    @Scheduled(fixedDelayString = "\${logging.custom.exporting.job.fixedDelay}")
     fun readNewLogsAndPushThem() {
         logsService.readNewLogsAndPushThem()
     }

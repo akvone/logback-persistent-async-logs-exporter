@@ -2,6 +2,8 @@ logging:
   custom:
     exporting:
       url: "http://localhost:8081/logs"
+      job:
+        fixedDelay: 1000
     persistentAppender:
       fileNamePartsSeparator: "."
       filesPrefix: mylog${logging.custom.persistentAppender.fileNamePartsSeparator}
