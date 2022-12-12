@@ -1,11 +1,11 @@
 package com.akvone.logs.config
 
 import ch.qos.logback.classic.LoggerContext
-import com.akvone.logs.CustomLoggingProperties
-import com.akvone.logs.HttpLogsExporter
-import com.akvone.logs.LogReaderAndExporter
+import com.akvone.logs.LoggingProperties
+import com.akvone.logs.LogsExportingHttpClient
+import com.akvone.logs.LogsExportingJob
 import com.akvone.logs.LogsService
-import com.akvone.logs.config.CustomLoggingAutoConfiguration.Companion.CUSTOM_APPENDER_NAME
+import com.akvone.logs.config.LoggingAutoConfiguration.Companion.CUSTOM_APPENDER_NAME
 import org.slf4j.LoggerFactory
 import org.slf4j.impl.StaticLoggerBinder
 import org.springframework.boot.context.properties.EnableConfigurationProperties
@@ -18,15 +18,15 @@ import org.springframework.core.type.AnnotatedTypeMetadata
 
 @Configuration
 @Conditional(CustomLoggingCondition::class)
-@EnableConfigurationProperties(CustomLoggingProperties::class)
+@EnableConfigurationProperties(LoggingProperties::class)
 @Import(
-    HttpLogsExporter::class,
-    LogReaderAndExporter::class,
+    LogsExportingHttpClient::class,
+    LogsExportingJob::class,
     LogsService::class
 )
-open class CustomLoggingAutoConfiguration {
+open class LoggingAutoConfiguration {
 
-    private val log = LoggerFactory.getLogger(CustomLoggingAutoConfiguration::class.java)
+    private val log = LoggerFactory.getLogger(LoggingAutoConfiguration::class.java)
 
     init {
         log.info("Custom logging is enabled")

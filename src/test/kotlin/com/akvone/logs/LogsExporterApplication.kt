@@ -22,7 +22,7 @@ fun main() {
 @Service
 open class LogsGenerator {
 
-    private val log: Logger = LoggerFactory.getLogger(LogReaderAndExporter::class.java)
+    private val log: Logger = LoggerFactory.getLogger(LogsExportingJob::class.java)
 
     private var currentLogLine = 0
 

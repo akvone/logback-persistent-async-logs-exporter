@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConstructorBinding
 
 @ConstructorBinding
 @ConfigurationProperties("logging.custom")
-data class CustomLoggingProperties (
+data class LoggingProperties(
     val persistentAppender: PersistentAppenderProperties,
     val exporter: ExporterProperties
 )
@@ -15,8 +15,6 @@ data class PersistentAppenderProperties(
     val filesPrefix: String,
     val logsParentFolder: String
 )
-
-
 
 data class ExporterProperties(
     val url: String,
