@@ -6,5 +6,5 @@ logging:
         fixedDelay: 1000
     persistentAppender:
       fileNamePartsSeparator: "."
-      filesPrefix: mylog${logging.custom.persistentAppender.fileNamePartsSeparator}
+      filesPrefix: customlog${logging.custom.persistentAppender.fileNamePartsSeparator}
       logsParentFolder: "."

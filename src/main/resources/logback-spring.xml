@@ -7,7 +7,7 @@
 
   <appender name="CUSTOM_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-      <fileNamePattern>mylog.%d{yyyyMMdd}.%i.txt</fileNamePattern><!-- rollover daily -->
+      <fileNamePattern>customlog.%d{yyyyMMdd}.%i.txt</fileNamePattern><!-- rollover daily -->
       <!-- each file should be at most 50MB, keep 10 days worth of history, but at most 1GB -->
       <maxFileSize>50MB</maxFileSize>
       <maxHistory>10</maxHistory>
