@@ -5,7 +5,7 @@
   <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
   <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 
-  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  <appender name="CUSTOM_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
       <fileNamePattern>mylog.%d{yyyyMMdd}.%i.txt</fileNamePattern><!-- rollover daily -->
       <!-- each file should be at most 50MB, keep 10 days worth of history, but at most 1GB -->
@@ -21,6 +21,6 @@
 
   <root level="INFO">
     <appender-ref ref="CONSOLE" />
-    <appender-ref ref="FILE" />
+    <appender-ref ref="CUSTOM_APPENDER" />
   </root>
 </configuration>

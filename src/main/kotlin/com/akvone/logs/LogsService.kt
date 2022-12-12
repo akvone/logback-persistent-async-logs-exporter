@@ -1,10 +1,8 @@
 package com.akvone.logs
 
-import org.springframework.stereotype.Service
 import java.io.File
 import java.util.*
 
-@Service
 open class LogsService(
     private val httpLogsExporter: HttpLogsExporter,
     properties: CustomLoggingProperties

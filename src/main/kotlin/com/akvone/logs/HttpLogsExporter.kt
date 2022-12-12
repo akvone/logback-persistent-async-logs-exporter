@@ -1,11 +1,9 @@
 package com.akvone.logs
 
 import kotlinx.coroutines.runBlocking
-import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBodilessEntity
 
-@Service
 open class HttpLogsExporter(
     private val properties: CustomLoggingProperties
 ) {
