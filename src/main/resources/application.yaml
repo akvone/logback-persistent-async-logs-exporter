@@ -1,0 +1,8 @@
+logging:
+  custom:
+    exporter:
+      url: "http://localhost:8081/logs"
+    persistentAppender:
+      fileNamePartsSeparator: "."
+      filesPrefix: mylog${logging.custom.persistentAppender.fileNamePartsSeparator}
+      logsParentFolder: "."

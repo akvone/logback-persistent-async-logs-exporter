@@ -6,16 +6,16 @@ import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBodilessEntity
 
 @Service
-open class HttpLogsExporter {
+open class HttpLogsExporter(
+    private val properties: CustomLoggingProperties
+) {
 
-    private val webClient = WebClient.builder()
-        .baseUrl("http://localhost:8081")
-        .build()
+    private val webClient = WebClient.create()
 
     fun push(logLines: List<String>) {
         runBlocking {
             webClient.post()
-                .uri("/logs")
+                .uri(properties.exporter.url)
                 .bodyValue(logLines)
                 .retrieve()
                 .awaitBodilessEntity()

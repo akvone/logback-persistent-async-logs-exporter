@@ -6,14 +6,16 @@ import java.util.*
 
 @Service
 open class LogsService(
-    private val httpLogsExporter: HttpLogsExporter
+    private val httpLogsExporter: HttpLogsExporter,
+    properties: CustomLoggingProperties
 ) {
 
     private var lastReadFileName = "" // Any name which will never exist in log folder
     private var lastReadLineNumber = 0
-    private val fileNamePartsSeparator = "."
-    private val filesPrefix = "mylog${fileNamePartsSeparator}"
-    private val logsParentFolder = "."
+
+    private val fileNamePartsSeparator = properties.persistentAppender.fileNamePartsSeparator
+    private val filesPrefix = properties.persistentAppender.filesPrefix
+    private val logsParentFolder = properties.persistentAppender.logsParentFolder
 
     fun readNewLogsAndPushThem() {
         getSortedLogFiles().forEach {
