@@ -1,7 +1,10 @@
 package com.akvone.logs
 
 import java.io.File
+import java.nio.file.Files
 import java.util.*
+import java.util.stream.Stream
+import kotlin.streams.toList
 
 open class LogsService(
     private val logsExportingHttpClient: LogsExportingHttpClient,
@@ -51,13 +54,12 @@ open class LogsService(
             }.map { it.file }
     }
 
-    private fun getLogLinesSince(logFile: File, lastReadLineNumber: Int): List<String> { // TODO: Improve this code
-        val scanner = Scanner(logFile)
-        val list = mutableListOf<String>()
-        while (scanner.hasNextLine()) {
-            list.add(scanner.nextLine())
+    private fun getLogLinesSince(logFile: File, lastReadLineNumber: Int): List<String> {
+        // This is the alternative to Files#lines.
+        // The latter explicitly forbids file modification on terminal operation, which we have with log files
+        return Files.newBufferedReader(logFile.toPath()).lines().use{
+            it.skip(lastReadLineNumber.toLong()).toList()
         }
-        return list.asSequence().drop(lastReadLineNumber).toList()
     }
 
     private data class FileWithNameParts(
