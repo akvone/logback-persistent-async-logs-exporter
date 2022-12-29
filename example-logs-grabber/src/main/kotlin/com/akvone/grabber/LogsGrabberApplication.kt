@@ -9,6 +9,7 @@ import org.springframework.http.MediaType.APPLICATION_OCTET_STREAM_VALUE
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.io.InputStream
 import java.util.*
 import java.util.concurrent.atomic.AtomicLong
 import javax.servlet.http.HttpServletRequest
@@ -34,9 +35,9 @@ open class LogsGrabber {
     private var lastLoggedLineNumberA = AtomicLong(-1)
 
     @PostMapping("logs", consumes = [APPLICATION_OCTET_STREAM_VALUE])
-    fun logs(request: HttpServletRequest): Long {
-        val countingInputStream = CountingInputStream(request.inputStream)
-        option2(countingInputStream)
+    fun logs(inputStream: InputStream): Long {
+        val countingInputStream = CountingInputStream(inputStream)
+        option1(countingInputStream)
 
         val byteCount = countingInputStream.byteCount
         log.info("Count $byteCount")
