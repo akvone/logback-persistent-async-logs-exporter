@@ -36,6 +36,21 @@ open class LogsGrabber {
     @PostMapping("logs", consumes = [APPLICATION_OCTET_STREAM_VALUE])
     fun logs(request: HttpServletRequest): Long {
         val countingInputStream = CountingInputStream(request.inputStream)
+        option2(countingInputStream)
+
+        val byteCount = countingInputStream.byteCount
+        log.info("Count $byteCount")
+
+        return byteCount
+    }
+
+    private fun option2(countingInputStream: CountingInputStream){
+        countingInputStream.bufferedReader()
+            .lineSequence()
+            .forEach { log.info(it) }
+    }
+
+    private fun option1(countingInputStream: CountingInputStream) {
         countingInputStream.bufferedReader()
             .lineSequence()
             .mapNotNull { it.toLongOrNull() }
@@ -49,9 +64,6 @@ open class LogsGrabber {
             }
 
         log.info(lastLoggedLineNumberA.toString())
-        log.info("Count ${countingInputStream.byteCount}")
-
-        return countingInputStream.byteCount
     }
 
 }

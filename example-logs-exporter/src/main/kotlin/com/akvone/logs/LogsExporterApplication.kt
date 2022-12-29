@@ -14,7 +14,7 @@ open class LogsExporterApplication
 
 fun main() {
     SpringApplicationBuilder(LogsExporterApplication::class.java)
-        .properties("logging.config=classpath:test-logs-exporter-logback-spring.xml")
+        .properties("server.port=8080")
         .build()
         .run()
 }
